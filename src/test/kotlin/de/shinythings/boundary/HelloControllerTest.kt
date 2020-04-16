@@ -23,14 +23,16 @@ class HelloControllerTest : AnnotationSpec() {
     fun `should respond hello world`() {
         var response: String = "empty"
         print(response)
-        sleep(5000)
+        var error: String? = "[empty error]"
 
         try {
-            response = client.toBlocking().retrieve("/hello")
+            response = client.toBlocking().retrieve("/a")
         } catch (e: Exception) {
             print(e.message)
+            error = e.message?
         }
         print(response)
+        error shouldBe "[something else]"
 
         response shouldBe "Hello World"
     }
