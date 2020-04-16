@@ -6,6 +6,7 @@ import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.test.annotation.MicronautTest
+import java.lang.Thread.sleep
 import javax.inject.Inject
 
 @MicronautTest
@@ -20,7 +21,15 @@ class HelloControllerTest : AnnotationSpec() {
 
     @Test
     fun `should respond hello world`() {
-        val response = client.toBlocking().retrieve("/hello")
+        var response: String = "empty"
+        sleep(5000)
+
+        try {
+            response = client.toBlocking().retrieve("/hello")
+        } catch (e: Exception) {
+            print(e.message)
+        }
+        print(response)
 
         response shouldBe "Hello World"
     }
