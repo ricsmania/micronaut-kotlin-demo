@@ -22,6 +22,7 @@ class HelloControllerTest : AnnotationSpec() {
     @Test
     fun `should respond hello world`() {
         var response: String = "empty"
+        print(response)
         sleep(5000)
 
         try {
