@@ -26,10 +26,10 @@ class HelloControllerTest : AnnotationSpec() {
         var error: String? = "[empty error]"
 
         try {
-            response = client.toBlocking().retrieve("/a")
+            response = client.toBlocking().retrieve("/hello")
         } catch (e: Exception) {
             print(e.message)
-            error = e.message?
+            error = e.message
         }
         print(response)
         error shouldBe "[something else]"
