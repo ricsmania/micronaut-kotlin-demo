@@ -24,15 +24,12 @@ class HelloControllerTest : AnnotationSpec() {
         var response: String = "empty"
         print(response)
         var error: String? = "[empty error]"
+        
+            response = client.toBlocking().retrieve("http://localhost:${server.port}/hello")
 
-        try {
-            response = client.toBlocking().retrieve("/hello")
-        } catch (e: Exception) {
-            print(e.message)
-            error = e.message
-        }
         print(response)
-        error shouldBe "[something else]"
+
+
 
         response shouldBe "Hello World"
     }
